@@ -103,6 +103,7 @@ def on_new_sample(appsink, user_data):
         global frame_cnt
         frame_cnt += 1
         
+        
         # Получаем данные кадра с GPU
         data_type, shape, strides, dataptr, size = pyds.get_nvds_buf_surface_gpu(
             hash(gst_buffer), frame_index
@@ -501,8 +502,8 @@ def main(args):
         return -1
 
     # Настройка queue для буферизации
-    queue_bg.set_property("leaky", 2)  # 2 = downstream (сбрасывает старые кадры если переполнено)
-    queue_bg.set_property("max-size-buffers", 10)  # Максимум 10 буферов
+    # queue_bg.set_property("leaky", 2)  # 2 = downstream (сбрасывает старые кадры если переполнено)
+    queue_bg.set_property("max-size-buffers", 0)  # Максимум 10 буферов
     queue_bg.set_property("max-size-time", 0)      # 0 = не ограничивать по времени
     queue_bg.set_property("max-size-bytes", 0)     # 0 = не ограничивать по размеру
 

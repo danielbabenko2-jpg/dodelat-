@@ -640,7 +640,7 @@ def main(args):
         % (updsink_port_num_2, codec)
     )
     factory_2.set_shared(True)
-    server_2.get_mount_points().add_factory("/bg-test", factory)
+    server_2.get_mount_points().add_factory("/bg-test", factory_2)
 
     print(
         "\n *** DeepStream: Launched RTSP Streaming at rtsp://localhost:%d/bg-test ***\n\n"
